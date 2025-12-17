@@ -28,7 +28,7 @@ This project evaluates six feature selection methods on a neural decoding task w
 ## Results
 
 | Method | K* | BalAcc | Runtime (h) |
-|--------|-----|--------|-------------|-------------|
+|--------|-----|--------|-------------|
 | **FSS** | **30** | **0.774** | 5.38 |
 | GB-VI | 35 | 0.770 | 0.15 |
 | RF-VI | 70 | 0.753 | 0.04 |
