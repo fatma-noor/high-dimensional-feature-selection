@@ -1,4 +1,4 @@
-# Neural Decoding Feature Selection
+# FEATURE SELECTION ON HIGH-DIMENSIONAL NEURAL DATA
 
 Comparative analysis of feature selection methods for classifying finger movements from neural spike count data in a high-dimensional setting.
 
