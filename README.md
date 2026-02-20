@@ -27,21 +27,14 @@ This project evaluates six feature selection methods on a neural decoding task w
 
 ## Results
 
-| Method | K* | BalAcc | Runtime (h) |
+| Method | Optimal K* | BalAcc | Runtime (h) |
 |--------|-----|--------|-------------|
-| **FSS** | **30** | **0.774** | 5.38 |
-| GB-VI | 35 | 0.770 | 0.15 |
-| RF-VI | 70 | 0.753 | 0.04 |
-| ENet | 2168 | **0.805** | 1.62 |
+| Forward Stepwise Selection (FSS with AIC) | **30** | **0.774** | 5.38 |
+| Gradient Boosting (GB-VI) | 35 | 0.770 | 0.15 |
+| Random Forest (RF-VI) | 70 | 0.753 | 0.04 |
+| Elastic Net (ENet) | 2168 | **0.805** | 1.62 |
 | Lasso | 350 | 0.729 | 0.02 |
-| mRMR | 185 | 0.634 | 4.53 |
-
-### Findings
-
-- **Best overall trade-off**: FSS (K*=30, BalAcc=0.774) - highest composite score balancing sparsity, accuracy, and runtime
-- **Best for generalisation**: GB-VI (K*=35) - highest average BalAcc across diverse classifiers (0.737)
-- **Highest single accuracy**: Elastic Net (BalAcc=0.805) - but requires 2,168 features and poor generalisation to non-linear classifiers
-- **Worst performer**: mRMR - redundancy minimisation ineffective when features are weakly correlated
+| Minimum redundancy, maximum relevance (mRMR) | 185 | 0.634 | 4.53 |
 
 ### Reasons underpinning these results
 
@@ -51,15 +44,6 @@ The dataset exhibits **distributed weak signals** with low inter-feature correla
 - **mRMR fails**: Redundancy minimisation offers no benefit when features are already independent
 - **Lasso underperforms**: Hard L1 sparsity discards weakly informative features that collectively matter
 
-## Evaluation framework
-
-Methods ranked using weighted composite score:
-- **Parsimony (K*)**: 45% weight - fewer features preferred
-- **Accuracy (BalAcc)**: 45% weight - higher balanced accuracy preferred
-- **Speed (Runtime)**: 10% weight - faster computation preferred
-
-Cross-classifier validation performed at each method's optimal K* using: Logistic Regression, Linear SVM, kNN, and Random Forest.
-
 ## Project Structure
 ```
 ├── cache/                                      # Pre-computed results (.pkl files)
@@ -68,26 +52,9 @@ Cross-classifier validation performed at each method's optimal K* using: Logisti
 └── high_dimensional_feature_selection.ipynb    # Main analysis notebook
 ```
 
-## Important: Clone the Full Repository
-
 ⚠️ **Make sure to clone the complete repository including the `cache/` folder.** 
 
 The cache folder contains pre-computed `.pkl` files that save **10+ hours of runtime**. Without these files, the notebook will recompute everything from scratch (FSS alone takes ~5.4 hours).
-
-## Limitations
-
-- Single train-test split (no repeated CV for stability estimates)
-- Coarse hyperparameter grid search
-- Basic class imbalance handling (`class_weight=balanced`)
-- Performance ceiling of BalAcc = 0.805
-
-## Future Directions
-
-- Repeated cross-validation for stable estimates
-- Finer hyperparameter tuning
-- Advanced resampling (SMOTE, ensemble methods)
-- Feature stability analysis via bootstrapping
-- Non-linear models (kernel SVM, neural networks)
 
 ## References
 
