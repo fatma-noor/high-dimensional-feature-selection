@@ -1,16 +1,13 @@
 # FEATURE SELECTION ON HIGH-DIMENSIONAL NEURAL DATA
+---
 
-Comparative analysis of feature selection methods for classifying finger movements from neural spike count data in a high-dimensional setting.
+Fatma Noor, 2025
 
-Overview: This project evaluates six feature selection methods on a neural decoding task with extreme dimensionality (p >> n). The goal is to predict binary behavioural outcomes (left/right decisions) from mouse frontal cortex recordings.
+Feature selection methods for classifying finger movements from high-dimensional neural spike data.
 
-## Dataset
+## About the data
 
-- **Source**: International Brain Laboratory (IBL et al., 2023)
-- **Features**: 11,190 neuron × time-bin combinations (2,238 neurons × 5 time bins, 0-500ms in 100ms windows)
-- **Samples**: 683 trials
-- **Target**: Binary classification (Left: 30.5%, Right: 69.5%)
-- **Challenge**: Extreme p/n ratio (~16), class imbalance, distributed weak signals
+The dataset is provided by the International Brain Laboratory (IBL, 2023) and consists of 683 behavioural trials. Each trial is represented by 11,190 features corresponding to neuron by time-bin combinations. The task is binary classification, predicting left versus right decisions. The problem is set in a high-dimensional regime where the number of features exceeds the number of observations (p >> n).
 
 ## Results
 
@@ -23,34 +20,14 @@ Overview: This project evaluates six feature selection methods on a neural decod
 | Lasso | 350 | 0.729 | 0.02 |
 | Minimum redundancy, maximum relevance (mRMR) | 185 | 0.634 | 4.53 |
 
-### Reasons underpinning these results
-
-The dataset exhibits **distributed weak signals** with low inter-feature correlation (avg |ρ| < 0.05). This explains:
-- **FSS succeeds**: Greedy AIC minimisation captures features with strongest marginal contributions
-- **GB-VI succeeds**: Sequential residual fitting accumulates weak signals effectively
-- **mRMR fails**: Redundancy minimisation offers no benefit when features are already independent
-- **Lasso underperforms**: Hard L1 sparsity discards weakly informative features that collectively matter
-
-## Project Structure
+## Repo Structure
 ```
 ├── cache/                                      # Pre-computed results (.pkl files)
 ├── data/                                       # Dataset
 ├── feature_selection_report.pdf                # Full analysis report
 └── high_dimensional_feature_selection.ipynb    # Main analysis notebook
 ```
-
-⚠️ **Make sure to clone the complete repository including the `cache/` folder.** 
-
-The cache folder contains pre-computed `.pkl` files that save **10+ hours of runtime**. Without these files, the notebook will recompute everything from scratch (FSS alone takes ~5.4 hours).
-
-## References
-
-- Breiman L. (2001). Random Forests. *Machine Learning*, 45(1):5-32.
-- Friedman J. (2001). Greedy function approximation: A gradient boosting machine. *Annals of Statistics*, 29(5):1189-1232.
-- IBL et al. (2023). A brain-wide map of neural activity during decision-making. *Nature*, 619:712-719.
-- Peng H, Long F, Ding C. (2005). Feature selection based on mutual information. *IEEE TPAMI*, 27(8):1226-1238.
-- Tibshirani R. (1996). Regression shrinkage and selection via the Lasso. *JRSS-B*, 58(1):267-288.
-- Zou H, Hastie T. (2005). Regularization and variable selection via the Elastic Net. *JRSS-B*, 67(2):301-320.
+The `cache/` directory contains stored intermediate results to avoid recomputing long-running procedures.
 
 ## Author
 Fatma Noor 
