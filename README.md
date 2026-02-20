@@ -1,7 +1,6 @@
 # FEATURE SELECTION ON HIGH-DIMENSIONAL NEURAL DATA
----
 
-Fatma Noor, 2025
+Fatma Noor
 
 Feature selection methods for classifying finger movements from high-dimensional neural spike data.
 
