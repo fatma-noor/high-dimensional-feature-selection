@@ -2,9 +2,7 @@
 
 Comparative analysis of feature selection methods for classifying finger movements from neural spike count data in a high-dimensional setting.
 
-## Overview
-
-This project evaluates six feature selection methods on a neural decoding task with extreme dimensionality (p >> n). The goal is to predict binary behavioural outcomes (left/right decisions) from mouse frontal cortex recordings.
+Overview: This project evaluates six feature selection methods on a neural decoding task with extreme dimensionality (p >> n). The goal is to predict binary behavioural outcomes (left/right decisions) from mouse frontal cortex recordings.
 
 ## Dataset
 
@@ -13,17 +11,6 @@ This project evaluates six feature selection methods on a neural decoding task w
 - **Samples**: 683 trials
 - **Target**: Binary classification (Left: 30.5%, Right: 69.5%)
 - **Challenge**: Extreme p/n ratio (~16), class imbalance, distributed weak signals
-
-## Feature selection methods
-
-| Method | Type | Description |
-|--------|------|-------------|
-| Forward Stepwise Selection (FSS) | Wrapper | Greedy forward search minimising AIC |
-| mRMR | Wrapper | Minimum redundancy, maximum relevance |
-| Lasso | Embedded (shrinkage) | L1 regularisation |
-| Elastic Net | Embedded (shrinkage) | L1 + L2 regularisation |
-| Random Forest VI | Embedded (tree) | Variable importance from RF |
-| Gradient Boosting VI | Embedded (tree) | Variable importance from GB |
 
 ## Results
 
